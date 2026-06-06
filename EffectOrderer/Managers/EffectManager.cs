@@ -28,7 +28,7 @@ internal class EffectManager(StatusEffectBase effect)
     bool CurrentlyDisabled => effect.Intensity > 0 && (effect._timeLeft > 0 || effect._duration == 0);
 
     // Intensity of permanent version of the effect
-    private byte permanentIntensity = effect._duration == 0f ? effect._intensity : (byte)0;
+    internal byte permanentIntensity { get; private set; } = effect._duration == 0f ? effect._intensity : (byte)0;
     // All saved temporary effects, at most one for each intensity (you could have intensity 2 for 30s, and intensity 1 for 60s)
     // Does not include current effect
     private List<Effect> temporaryEffects = new();
@@ -169,11 +169,11 @@ internal class EffectManager(StatusEffectBase effect)
             InvokeEvent("OnIntensityChanged", effect, oldEffect.intensity, newEffect.intensity);
         }
 
-        if (oldEffect.intensity > 0 && oldEffect.timeLeft > 0f)
+        if (oldEffect.intensity > 0 && oldEffect.timeLeft > 0f) 
             temporaryEffects.Add(oldEffect);
         return true;
     }
-
+     
     void RawSetEffect(Effect newEffect)
     {
         effect._intensity = newEffect.intensity;
