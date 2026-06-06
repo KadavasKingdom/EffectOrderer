@@ -149,6 +149,9 @@ internal class EffectManager(StatusEffectBase effect)
         newEffect.duration = args.Duration;
         newEffect.timeLeft += (args.Duration - newEffect.duration);
 
+        RawSetEffect(newEffect);
+        controller.ServerSyncEffect(effect);
+        PlayerEvents.OnUpdatedEffect(new(owner.ReferenceHub, effect, newEffect.intensity, newEffect.duration));
         if (oldEffect.intensity == 0 && newEffect.intensity > 0)
         {
             effect.Enabled();
@@ -166,12 +169,8 @@ internal class EffectManager(StatusEffectBase effect)
             InvokeEvent("OnIntensityChanged", effect, oldEffect.intensity, newEffect.intensity);
         }
 
-        if (!CurrentlyDisabled)
+        if (oldEffect.intensity > 0 && oldEffect.timeLeft > 0f)
             temporaryEffects.Add(oldEffect);
-
-        RawSetEffect(newEffect);
-        controller.ServerSyncEffect(effect);
-        PlayerEvents.OnUpdatedEffect(new(owner.ReferenceHub, effect, newEffect.intensity, newEffect.duration));
         return true;
     }
 
