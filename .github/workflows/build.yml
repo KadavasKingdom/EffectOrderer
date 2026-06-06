@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  push:
+    tags-ignore:
+      - "release-*"
+      - "latest"
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+  workflow_dispatch:
+    # allow manual trigger
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    uses: KadavasKingdom/workflows/.github/workflows/build.yml@main
+    secrets:
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
