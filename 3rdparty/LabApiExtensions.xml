@@ -984,12 +984,12 @@
             Check for <see cref="M:Mirror.NetworkBehaviour.SerializeSyncVars(Mirror.NetworkWriter,System.Boolean)"/> in the <paramref name="networkBehaviour"/>.
             </remarks>
         </member>
-        <member name="T:LabApiExtensions.FakeExtension.PlayerFakeMessageExtension">
+        <member name="T:LabApiExtensions.FakeExtension.PlayerFakeExtension">
             <summary>
-            Collection of sending fake messages.
+            Collection of sending fake messages/packets.
             </summary>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeMessageExtension.SetFakeGravity(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,UnityEngine.Vector3)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeGravity(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,UnityEngine.Vector3)">
             <summary>
             Sends a fake gravity message to <paramref name="target"/>.
             </summary>
@@ -997,7 +997,7 @@
             <param name="target">The player whos gravity changes.</param>
             <param name="gravity">The new gravity value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeMessageExtension.SetFakeGravity(LabApi.Features.Wrappers.Player,System.Collections.Generic.IEnumerable{LabApi.Features.Wrappers.Player},UnityEngine.Vector3)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeGravity(LabApi.Features.Wrappers.Player,System.Collections.Generic.IEnumerable{LabApi.Features.Wrappers.Player},UnityEngine.Vector3)">
             <summary>
             Sends a fake gravity message to <paramref name="targets"/>.
             </summary>
@@ -1005,7 +1005,7 @@
             <param name="targets">The players whos gravity changes.</param>
             <param name="gravity">The new gravity value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeMessageExtension.SetFakeScale(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,UnityEngine.Vector3)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeScale(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,UnityEngine.Vector3)">
             <summary>
             Sends a fake scale message to <paramref name="target"/>.
             </summary>
@@ -1013,7 +1013,7 @@
             <param name="target">The players whos gravity changes.</param>
             <param name="scale">The new gravity value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeMessageExtension.SetFakeScale(LabApi.Features.Wrappers.Player,System.Collections.Generic.IEnumerable{LabApi.Features.Wrappers.Player},UnityEngine.Vector3)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeScale(LabApi.Features.Wrappers.Player,System.Collections.Generic.IEnumerable{LabApi.Features.Wrappers.Player},UnityEngine.Vector3)">
             <summary>
             Sends a fake scale message to <paramref name="targets"/>.
             </summary>
@@ -1021,17 +1021,7 @@
             <param name="targets">The players whos scale changes.</param>
             <param name="scale">The new scale value.</param>
         </member>
-        <member name="T:LabApiExtensions.FakeExtension.PlayerFakeRpcExtension">
-            <summary>
-            Collection of sending fake Rpc.
-            </summary>
-        </member>
-        <member name="T:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension">
-            <summary>
-            Collection of sending fake sync vars.
-            </summary>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeBadgeText(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeBadgeText(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
             <summary>
             Sets a fake <paramref name="badgeText"/> of <paramref name="target"/>.
             </summary>
@@ -1039,13 +1029,7 @@
             <param name="target">The players whos badge text changes.</param>
             <param name="badgeText">The new badge text value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeBadgeText(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> badge text from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeBadgeColor(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeBadgeColor(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
             <summary>
             Sets a fake <paramref name="color"/> of <paramref name="target"/>.
             </summary>
@@ -1053,13 +1037,7 @@
             <param name="target">The players whos badge color changes.</param>
             <param name="color">The new badge color value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeBadgeColor(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> badge color from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeViewRange(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.Single)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeViewRange(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.Single)">
             <summary>
             Sets a fake <paramref name="viewRange"/> of <paramref name="target"/>.
             </summary>
@@ -1067,13 +1045,7 @@
             <param name="target">The players whos view range changes.</param>
             <param name="viewRange">The new view range value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeViewRange(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> view range from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeCustomInfo(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeCustomInfo(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
             <summary>
             Sets a fake <paramref name="customInfo"/> of <paramref name="target"/>.
             </summary>
@@ -1081,13 +1053,7 @@
             <param name="target">The players whos custom info changes.</param>
             <param name="customInfo">The new custom info value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeCustomInfo(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> custom info from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeInfoArea(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,PlayerInfoArea)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeInfoArea(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,PlayerInfoArea)">
             <summary>
             Sets a fake <paramref name="playerInfoArea"/> of <paramref name="target"/>.
             </summary>
@@ -1095,13 +1061,7 @@
             <param name="target">The players whos info area changes.</param>
             <param name="playerInfoArea">The new info area value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeInfoArea(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> info area from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeNick(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeNick(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
             <summary>
             Sets a fake <paramref name="nick"/> of <paramref name="target"/>.
             </summary>
@@ -1109,13 +1069,7 @@
             <param name="target">The players whos nickname changes.</param>
             <param name="nick">The new nickname value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeNick(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> nickname from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeDisplayName(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeDisplayName(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.String)">
             <summary>
             Sets a fake <paramref name="displayName"/> of <paramref name="target"/>.
             </summary>
@@ -1123,13 +1077,7 @@
             <param name="target">The players whos display name changes.</param>
             <param name="displayName">The new display name value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeDisplayName(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> display name from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeMaxPlayers(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.UInt16)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeMaxPlayers(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,System.UInt16)">
             <summary>
             Sets a fake <paramref name="maxPlayer"/> of <paramref name="target"/>.
             </summary>
@@ -1137,25 +1085,13 @@
             <param name="target">The players whos max player changes.</param>
             <param name="maxPlayer">The new max player value.</param>
         </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeMaxPlayers(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> max player from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.SetFakeCurrentItem(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,InventorySystem.Items.ItemIdentifier)">
+        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeExtension.SetFakeCurrentItem(LabApi.Features.Wrappers.Player,LabApi.Features.Wrappers.Player,InventorySystem.Items.ItemIdentifier)">
             <summary>
             Sets a fake <paramref name="item"/> of <paramref name="target"/>.
             </summary>
             <param name="player">The player whos receives it.</param>
             <param name="target">The players whos current item changes.</param>
             <param name="item">The new current item value.</param>
-        </member>
-        <member name="M:LabApiExtensions.FakeExtension.PlayerFakeSyncVarExtension.ResyncFakeCurrentItem(LabApi.Features.Wrappers.Player)">
-            <summary>
-            Resyncs <paramref name="player"/> current item from the server.
-            </summary>
-            <param name="player">The player to resync.</param>
         </member>
         <member name="T:LabApiExtensions.Helpers.GameObjectPrintHelper">
             <summary>
