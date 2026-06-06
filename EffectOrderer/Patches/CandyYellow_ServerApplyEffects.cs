@@ -1,17 +1,8 @@
-﻿
-using CustomPlayerEffects;
+﻿using CustomPlayerEffects;
 using EffectOrderer.Extensions;
 using HarmonyLib;
 using InventorySystem.Items.Usables.Scp330;
-using LabApiExtensions.Configs;
-using LabApiExtensions.Extensions;
 using PlayerStatsSystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 namespace EffectOrderer.Patches;
 

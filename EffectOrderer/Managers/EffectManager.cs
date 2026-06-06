@@ -2,8 +2,6 @@
 using HarmonyLib;
 using LabApi.Events.Arguments.PlayerEvents;
 using LabApi.Events.Handlers;
-using LabApiExtensions.Extensions;
-using PlayerRoles.FirstPersonControl;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 

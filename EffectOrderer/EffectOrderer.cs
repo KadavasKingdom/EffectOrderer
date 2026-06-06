@@ -1,5 +1,4 @@
-﻿using CustomPlayerEffects;
-using HarmonyLib;
+﻿using HarmonyLib;
 using LabApi.Loader.Features.Plugins;
 
 namespace EffectOrderer;
