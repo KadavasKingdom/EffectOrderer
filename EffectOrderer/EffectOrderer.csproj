@@ -28,7 +28,6 @@
 		<Reference Include="Mirror" Private="false" />
 		<Reference Include="UnityEngine" Private="false" />
 		<Reference Include="UnityEngine.CoreModule" Private="false" />
-		<Reference Include="LabApiExtensions" Private="false" />
 	</ItemGroup>
 
 	<!-- Usings globals -->
@@ -36,7 +35,6 @@
 		<Using Include="UnityEngine.Random" Alias="URandom" />
 		<Using Include="LabApi.Features.Wrappers" />
 		<Using Include="LabApi.Features.Console.Logger" Alias="CL" />
-		<Using Include="LabApiExtensions.Helpers" />
 	</ItemGroup>
 
 	<!-- Reference path -->

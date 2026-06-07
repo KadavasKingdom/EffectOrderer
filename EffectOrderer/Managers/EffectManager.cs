@@ -118,6 +118,7 @@ internal class EffectManager(StatusEffectBase effect)
         });
     }
 
+
     internal void SetPermanentEffect(byte intensity)
     {
         if (intensity > permanentIntensity)

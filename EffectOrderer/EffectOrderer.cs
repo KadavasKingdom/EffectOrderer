@@ -24,5 +24,5 @@ public class EffectOrderer : Plugin
     public override void Disable()
     {
         harmony.UnpatchAll(Name);
-    }
+    } 
 }
