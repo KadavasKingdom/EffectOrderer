@@ -9,6 +9,7 @@
 		<Version>$([System.DateTime]::UtcNow.ToString("yyyy.MMdd.HH"))</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<WarningLevel>3</WarningLevel>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="BepInEx.Assemblypublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" ExcludeAssets="runtime" ReferenceOutputAssembly="false" Private="true" />

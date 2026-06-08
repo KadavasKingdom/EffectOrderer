@@ -15,7 +15,7 @@ public class EffectOrderer : Plugin
 
     public override Version RequiredApiVersion => LabApi.Features.LabApiProperties.CurrentVersion;
 
-    Harmony harmony;
+    Harmony harmony = null!;
     public override void Enable()
     {
         harmony = new(Name);
@@ -25,4 +25,4 @@ public class EffectOrderer : Plugin
     {
         harmony.UnpatchAll(Name);
     } 
-}
+} 

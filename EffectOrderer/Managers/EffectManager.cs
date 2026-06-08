@@ -25,7 +25,7 @@ internal class EffectManager(StatusEffectBase effect)
     private PlayerEffectsController controller => effect.Hub.playerEffectsController;
     // Current active effect (if temporarily disabled, the value before being temporarily disabled)
     Effect CurrentActive => _tempDisabled ? _preDisable : new(effect._intensity, effect._duration, effect._timeLeft);
-    bool CurrentlyDisabled => effect.Intensity > 0 && (effect._timeLeft > 0 || effect._duration == 0);
+    bool CurrentlyDisabled => effect.Intensity == 0 || (effect._timeLeft <= 0 && effect._duration != 0);
 
     // Intensity of permanent version of the effect
     internal byte permanentIntensity { get; private set; } = effect._duration == 0f ? effect._intensity : (byte)0;
@@ -151,6 +151,8 @@ internal class EffectManager(StatusEffectBase effect)
         newEffect.timeLeft += (args.Duration - newEffect.duration);
 
         RawSetEffect(newEffect);
+        if (!_tempDisabled && oldEffect.intensity > 0 && oldEffect.timeLeft > 0f)
+            temporaryEffects.Add(oldEffect);
         controller.ServerSyncEffect(effect);
         PlayerEvents.OnUpdatedEffect(new(owner.ReferenceHub, effect, newEffect.intensity, newEffect.duration));
         if (oldEffect.intensity == 0 && newEffect.intensity > 0)
@@ -170,11 +172,10 @@ internal class EffectManager(StatusEffectBase effect)
             InvokeEvent("OnIntensityChanged", effect, oldEffect.intensity, newEffect.intensity);
         }
 
-        if (oldEffect.intensity > 0 && oldEffect.timeLeft > 0f) 
-            temporaryEffects.Add(oldEffect);
+
         return true;
     }
-     
+
     void RawSetEffect(Effect newEffect)
     {
         effect._intensity = newEffect.intensity;
@@ -282,5 +283,20 @@ internal class EffectManager(StatusEffectBase effect)
                 temporaryEffects.Add(highest);
             }
         });
+    }
+
+    // DEBUG STUFF
+    internal void DebugPrints()
+    {
+        var strng = $"For effect {effect.name}:\n";
+        strng += $"DISABLED: {CurrentlyDisabled}\n";
+        strng += $"CURRENT: {CurrentActive}\n";
+        strng += $"PERM: {permanentIntensity}\n";
+        strng += "TEMPS:\n";
+        foreach (var effect in temporaryEffects)
+        {
+            strng += $"\t{effect}";
+        }
+        CL.Info(strng);
     }
 }
