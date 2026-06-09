@@ -25,7 +25,7 @@ internal class EffectManager(StatusEffectBase effect)
     private PlayerEffectsController controller => effect.Hub.playerEffectsController;
     // Current active effect (if temporarily disabled, the value before being temporarily disabled)
     Effect CurrentActive => _tempDisabled ? _preDisable : new(effect._intensity, effect._duration, effect._timeLeft);
-    bool CurrentlyDisabled => effect.Intensity == 0 || (effect._timeLeft <= 0 && effect._duration != 0);
+    bool CurrentlyDisabled => effect.Intensity == 0 || (effect._timeLeft <= 0 && effect._duration != 0) || effect._timeLeft == -1f;
 
     // Intensity of permanent version of the effect
     internal byte permanentIntensity { get; private set; } = effect._duration == 0f ? effect._intensity : (byte)0;
@@ -240,6 +240,7 @@ internal class EffectManager(StatusEffectBase effect)
     {
         temporaryEffects.Clear();
         permanentIntensity = 0;
+        RawSetEffect(new(effect._intensity, -1f, -1f));
         RefreshEffect();
     }
 
