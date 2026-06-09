@@ -20,6 +20,8 @@ internal static class StatusEffectBase_ServerSetState
             CL.Error(e);
         }
 
+        __instance.GetManager().DebugPrints();
+
         return false;
     }
 }
