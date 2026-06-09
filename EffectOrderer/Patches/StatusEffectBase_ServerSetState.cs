@@ -11,7 +11,6 @@ internal static class StatusEffectBase_ServerSetState
     {
         if (__instance.Classification == StatusEffectBase.EffectClassification.Technical) return true;
 
-        CL.Debug($"{__instance.GetType().Name} set with Intensity {intensity} for {duration}s and AddDuration {addDuration}");
         try
         {
             __instance.GetManager().SetState(intensity, duration, addDuration);
@@ -19,8 +18,6 @@ internal static class StatusEffectBase_ServerSetState
         {
             CL.Error(e);
         }
-
-        __instance.GetManager().DebugPrints();
 
         return false;
     }

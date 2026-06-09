@@ -285,19 +285,4 @@ internal class EffectManager(StatusEffectBase effect)
             }
         });
     }
-
-    // DEBUG STUFF
-    internal void DebugPrints()
-    {
-        var strng = $"For effect {effect.name}:\n";
-        strng += $"DISABLED: {CurrentlyDisabled}\n";
-        strng += $"CURRENT: {CurrentActive}\n";
-        strng += $"PERM: {permanentIntensity}\n";
-        strng += "TEMPS:\n";
-        foreach (var effect in temporaryEffects)
-        {
-            strng += $"\t{effect}";
-        }
-        CL.Info(strng);
-    }
 }
