@@ -240,7 +240,8 @@ internal class EffectManager(StatusEffectBase effect)
     {
         temporaryEffects.Clear();
         permanentIntensity = 0;
-        RawSetEffect(new(effect._intensity, -1f, -1f));
+        if (effect._intensity != 0)
+            RawSetEffect(new(effect._intensity, -1f, -1f));
         RefreshEffect();
     }
 
@@ -266,6 +267,9 @@ internal class EffectManager(StatusEffectBase effect)
     // Replaces StatusEffectBase.ForceIntensity
     internal void ForceIntensity(byte value)
     {
+        if (value == effect._intensity)
+            return;
+
         if (value == 0)
         {
             DisableEffect();
