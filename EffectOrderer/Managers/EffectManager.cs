@@ -257,9 +257,11 @@ internal class EffectManager(StatusEffectBase effect)
             if (effect._timeLeft < 0f)
             {
                 RefreshEffect();
-                return;
             }
         }
+
+        if (!effect.IsEnabled)
+            return;
 
 
         effect.OnEffectUpdate();
