@@ -262,6 +262,9 @@ internal class EffectManager(StatusEffectBase effect)
             }
         }
 
+        if (!effect.IsEnabled)
+            return;
+
 
         effect.OnEffectUpdate();
     }
