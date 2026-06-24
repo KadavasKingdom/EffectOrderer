@@ -1,5 +1,11 @@
-﻿using HarmonyLib;
+﻿using CommandSystem;
+using HarmonyLib;
+using LabApi.Events.Handlers;
 using LabApi.Loader.Features.Plugins;
+using MEC;
+using PlayerStatsSystem;
+using Unity.Collections;
+using UnityEngine;
 
 namespace EffectOrderer;
 
@@ -15,7 +21,7 @@ public class EffectOrderer : Plugin
 
     public override Version RequiredApiVersion => LabApi.Features.LabApiProperties.CurrentVersion;
 
-    Harmony harmony = null!;
+    Harmony? harmony;
     public override void Enable()
     {
         harmony = new(Name);
@@ -23,6 +29,6 @@ public class EffectOrderer : Plugin
     }
     public override void Disable()
     {
-        harmony.UnpatchAll(Name);
-    } 
-} 
+        harmony!.UnpatchAll(Name);
+    }
+}

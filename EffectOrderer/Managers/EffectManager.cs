@@ -83,11 +83,11 @@ internal class EffectManager(StatusEffectBase effect)
 
 
 
-    internal void RefreshEffect()
+    internal bool RefreshEffect()
     {
         var highestEffect = GetHighestEffect();
         temporaryEffects.Remove(highestEffect);
-        UpdateCurrentEffect(highestEffect);
+        return UpdateCurrentEffect(highestEffect);
     }
 
     internal void AddTemporaryEffect(byte intensity, float duration)
@@ -123,8 +123,10 @@ internal class EffectManager(StatusEffectBase effect)
     {
         if (intensity > permanentIntensity)
         {
+            var oldIntensity = permanentIntensity;
             permanentIntensity = intensity;
-            RefreshEffect();
+            if (!RefreshEffect() && GetHighestEffect().intensity == permanentIntensity)
+                permanentIntensity = oldIntensity;
         }
     }
 
