@@ -28,7 +28,7 @@ namespace EffectOrderer.Extensions
         /// </summary>
         /// <param name="player"></param>
         /// <param name="intensity"></param>
-        /// <returns>Action which, when called, removes the permanent effect</returns>
+        /// <returns><see cref="Action"/> which, when called, removes the permanent effect</returns>
         public static Action AddCancellablePermanentEffect<T>(this Player player, byte intensity) where T : StatusEffectBase
             => AddCancellablePermanentEffect(player, player.GetEffect<T>()!, intensity);
 
@@ -37,7 +37,8 @@ namespace EffectOrderer.Extensions
         /// </summary>
         /// <param name="player"></param>
         /// <param name="intensity"></param>
-        /// <returns>Action which, when called, removes the permanent effect</returns>
+        /// <param name="effect"></param>
+        /// <returns><see cref="Action"/> which, when called, removes the permanent effect</returns>
         public static Action AddCancellablePermanentEffect(this Player player, StatusEffectBase effect, byte intensity)
             => effect.GetManager().AddCancellablePermanentEffect(intensity);
     }
