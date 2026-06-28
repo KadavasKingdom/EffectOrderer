@@ -19,8 +19,7 @@ internal class EffectManager(StatusEffectBase effect)
     private bool _tempDisabled = false;
     // Effect value before being temporarily disabled
     private Effect _preDisable = Effect.zero;
-
-
+    
     private Player owner => Player.Get(effect.Hub);
     private PlayerEffectsController controller => effect.Hub.playerEffectsController;
     // Current active effect (if temporarily disabled, the value before being temporarily disabled)
@@ -29,6 +28,8 @@ internal class EffectManager(StatusEffectBase effect)
 
     // Intensity of permanent version of the effect
     internal byte permanentIntensity { get; private set; } = effect._duration == 0f ? effect._intensity : (byte)0;
+    // Cancellable permanent effects (permanent but will be removed when an arbitrary event occurs) (an additional object tag is included)
+    internal List<(byte, object)> cancellablePermanentIntensities = new();
     // All saved temporary effects, at most one for each intensity (you could have intensity 2 for 30s, and intensity 1 for 60s)
     // Does not include current effect
     private List<Effect> temporaryEffects = new();
@@ -193,6 +194,10 @@ internal class EffectManager(StatusEffectBase effect)
         if (permanentIntensity >= highestEffect.intensity)
             highestEffect = new(permanentIntensity, 0f, 0f);
 
+        foreach (var perm in cancellablePermanentIntensities)
+            if (perm.Item1 > highestEffect.intensity)
+                highestEffect = new(perm.Item1, 0f, 0f);
+
         var highestTemporary = GetHighestTemporary();
         if (highestTemporary.intensity > highestEffect.intensity)
             highestEffect = highestTemporary;
@@ -221,6 +226,9 @@ internal class EffectManager(StatusEffectBase effect)
             return;
         }
 
+        if (intensity > effect._intensity && !effect.AllowEnabling)
+            return; // vanilla behavior: preserve old intensity and continue with duration. this is jank. im not carrying this over.
+
         if (duration == 0)
         {
             SetPermanentEffect(intensity);
@@ -241,6 +249,7 @@ internal class EffectManager(StatusEffectBase effect)
     void DisableEffect()
     {
         temporaryEffects.Clear();
+        cancellablePermanentIntensities.Clear();
         permanentIntensity = 0;
         if (effect._intensity != 0)
             RawSetEffect(new(effect._intensity, -1f, -1f));
@@ -293,5 +302,23 @@ internal class EffectManager(StatusEffectBase effect)
                 temporaryEffects.Add(highest);
             }
         });
+    }
+
+    internal Action AddCancellablePermanentEffect(byte intensity)
+    {
+        var item = (intensity, new object());
+        cancellablePermanentIntensities.Add(item);
+        RefreshEffect();
+        return () =>
+        {
+            cancellablePermanentIntensities.Remove(item);
+            if (effect._intensity == item.intensity && effect._duration == 0f)
+            {
+                effect._timeLeft = -1f;
+                effect._duration = -1f;
+            }
+            
+            RefreshEffect();
+        };
     }
 }
