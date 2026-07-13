@@ -1,5 +1,5 @@
 # Effect Orderer
-This plugin makes use of custom effect managers (overwriting StatusEffectBase.<ServerSetState, Update, ForceIntensity> for all effects EXCEPT technical ones).
+This plugin makes use of custom effect managers (overwriting `StatusEffectBase.[ServerSetState, Update, ForceIntensity]` for all effects EXCEPT technical ones. Those are completely unaffected by EffectOrderer.)
 
 These managers allow several instances of a status effect to "stack", where one is executed after another. Permanent effects will not be overwritten by temporary 
 ones, unless the temporary one has a higher intensity. When that temporary effect runs out, the intensity will return to the permanent intensity.
@@ -18,7 +18,7 @@ player.GetEffect<Slowness>().Intensity = 5; // In vanilla and with EffectOrderer
 Yellow candy doesn't follow the usual rules of effects, adding intensity and duration specifically to temporary MovementBoost. It works intuitively, only applying its effect to active temporary effects and not permanent MovementBoost.
 
 ### Cancellable permanent effects
-If you don't know how long an effect will last, you can use a cancellable permanent effect to cancel it when it's done. 
+If you don't know how long an effect will last, you can use a cancellable permanent effect to cancel it when it's done. Do NOT do this for technical effects. It will break.
 ```cs
 public class StainedManager(Player player) {
   Action _cancelAction;
